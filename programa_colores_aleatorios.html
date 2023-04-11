@@ -1,0 +1,38 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+    //modificacion para colres de los circulos aleatorios
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d");
+    
+    pincel.fillStyle = "grey";
+    pincel.fillRect(0,0,600,400);
+
+    function exhibirAlerta(evento){
+        var x = evento.pageX - pantalla.offsetLeft;
+        var y = evento.pageY - pantalla.offsetTop;
+        console.log(evento);
+        alert("x: "+ x + " , " +"y: "+ y);
+    }
+   
+    function dibujarCirculo(evento){
+        var x = evento.pageX - pantalla.offsetLeft;
+        var y = evento.pageY - pantalla.offsetTop;
+        
+        //Lista de colores
+        var colores = ["red", "green", "blue", "yellow", "purple"];
+        //Seleccionar un color aleatorio de la lista
+        var color = colores[Math.floor(Math.random() * colores.length)];
+
+
+        pincel.fillStyle = color;
+        pincel.beginPath();
+        pincel.arc(x,y,Math.round(Math.random()*50),0,2*3.14)
+        pincel.fill();
+        console.log(x + " , " + y);
+
+    }
+    pantalla.onclick = dibujarCirculo;
+    
+
+</script>
